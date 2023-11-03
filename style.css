@@ -1,0 +1,43 @@
+* {
+  /* margin: 0;
+  padding: 0;
+  box-sizing: border-box; */
+}
+
+body {
+  background-image: url(/sayi.jpg);
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+  background-attachment: fixed;
+  text-align: center;
+}
+
+.container {
+  padding-top: 50px;
+  color: red;
+}
+
+h1 {
+  font-size: 50px;
+}
+
+.input {
+  width: 250px;
+  height: 25px;
+  margin-top: 55px;
+}
+
+.button {
+  height: 30px;
+}
+
+#tahmin {
+  font-size: 35px;
+  font-weight: bold;
+}
+
+.last {
+  font-size: 25px;
+  font-weight: bold;
+}
