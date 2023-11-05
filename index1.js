@@ -76,7 +76,7 @@ function playGame() {
     first.textContent = `Kalan tahmin sayısı: ${maxAttempts - attempts}  `;
 
     lastGuess = userGuess;
-    last.textContent = `Son tahmin: ${secretNumber}  `;
+    last.textContent = `Son tahmin: ${userGuess}  `;
     input.focus();
 
     if (attempts === 1) {

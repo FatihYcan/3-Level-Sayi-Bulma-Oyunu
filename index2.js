@@ -74,7 +74,7 @@ function playGame() {
     first.textContent = `Kalan tahmin sayısı: ${maxAttempts - attempts}  `;
 
     lastGuess = userGuess;
-    last.textContent = `Son tahmin: ${secretNumber}  `;
+    last.textContent = `Son tahmin: ${userGuess}  `;
     input.focus();
 
     if (attempts === 1) {
@@ -125,7 +125,7 @@ function playGame() {
       first.style.display = "none";
       last.style.display = "none";
       message.style.color = "orange";
-      
+
       setTimeout(() => {
         window.location.href = "index2.html"; // 0 ile 10 arasında sayı tahmin oyununa yönlendir
       }, 4000);
