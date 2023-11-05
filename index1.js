@@ -1,9 +1,11 @@
 const minNumber = 0;
-const maxNumber = 10;
-const maxAttempts = 4; // 4 tahmin hakkı
+const maxNumber = 100;
+const maxAttempts = 7; // 7 tahmin hakkı
 
 let secretNumber;
 let attempts;
+let firstGuess;
+let lastGuess;
 
 const userGuessInput = document.getElementById("userGuess");
 const guessButton = document.getElementById("guessButton");
@@ -39,7 +41,7 @@ restartButton.addEventListener("click", function () {
 
 function initializeGame() {
   secretNumber = generateRandomNumber();
-  attempts = maxAttempts;
+  attempts = 0;
   attemptsDisplay.textContent = attempts;
   lastGuessDisplay.textContent = "";
   message.textContent = "";
@@ -47,6 +49,8 @@ function initializeGame() {
   userGuessInput.disabled = false;
   restartButton.style.display = "none";
   attemptsDisplay.style.display = "none";
+  firstGuess = null;
+  lastGuess = null;
 }
 
 function generateRandomNumber() {
@@ -67,11 +71,17 @@ function playGame() {
   } else {
     first.style.display = "block";
     last.style.display = "block";
-    attempts--;
     attemptsDisplay.textContent = attempts;
-    first.textContent = `Kalan tahmin sayısı: ${attempts}  `;
-    last.textContent = `Son tahmin: ${userGuess}  `;
+    attempts++;
+    first.textContent = `Kalan tahmin sayısı: ${maxAttempts - attempts}  `;
+
+    lastGuess = userGuess;
+    last.textContent = `Son tahmin: ${secretNumber}  `;
     input.focus();
+
+    if (attempts === 1) {
+      firstGuess = userGuess;
+    }
 
     if (userGuess < secretNumber) {
       message.textContent = "Daha büyük bir sayı deneyin.";
@@ -84,40 +94,49 @@ function playGame() {
       audio.play();
       message.style.color = "yellow";
     } else {
-      if (userGuess === secretNumber && attempts >= 0) {
-        message.textContent = `Tebrikler 👏👏👏 ${secretNumber} sayısını ${
-          maxAttempts - attempts
-        } denemede buldunuz. 2. seviyeye yükseldiniz.`;
+      if (userGuess === secretNumber && maxAttempts - (attempts - 1) >= 0) {
+        message.textContent = `Tebrikler 👏👏👏 ${secretNumber} sayısını ${attempts} denemede buldunuz. 3. seviyeye yükseldiniz.`;
         const audio = new Audio("dogru.mp3");
         audio.play();
         first.style.display = "none";
         last.style.display = "none";
         message.style.color = "green";
         setTimeout(() => {
-          window.location.href = "index1.html"; // 0 ile 100 arasında sayı tahmin oyununa yönlendir
+          window.location.href = "index2.html"; // 0 ile 1000 arasında sayı tahmin oyununa yönlendir
         }, 3000);
       }
     }
 
-    if (userGuess !== secretNumber && attempts <= 0) {
-      message.textContent = `Üzgünüm ki 😢😢😢 ${secretNumber} sayısını ${maxAttempts} hakkınızda bilemediniz.  Oyunu yeniden başlatmak için 'Oyunu Yeniden Başlat' butonuna tıklayabilirsiniz.`;
+    if (userGuess !== secretNumber && maxAttempts - attempts <= 0) {
+      message.textContent = `Üzgünüm ki 😢😢😢 ${secretNumber} sayısını ${maxAttempts} hakkınızda bilemediniz. Seviye 1'e düştünüz`;
       const audio = new Audio("yanlis.mp3");
       audio.play();
-      guessButton.disabled = true;
-      userGuessInput.disabled = true;
-      restartButton.style.display = "block";
       first.style.display = "none";
       last.style.display = "none";
       message.style.color = "red";
+      setTimeout(() => {
+        window.location.href = "index.html"; // 0 ile 10 arasında sayı tahmin oyununa yönlendir
+      }, 3000);
+    }
+
+    if (
+      firstGuess < secretNumber &&
+      lastGuess > secretNumber &&
+      maxAttempts - attempts == 0
+    ) {
+      message.textContent = `${secretNumber} sayısı hakkınız olan ${maxAttempts} tahmin arasında bulunduğunuz ${firstGuess} ile ${lastGuess} sayısı arasında olduğu için bu seviyeyi tekrar oynacaksınız. `;
+      const audio = new Audio("yanlis.mp3");
+      audio.play();
+      first.style.display = "none";
+      last.style.display = "none";
+      message.style.color = "orange";
+      setTimeout(() => {
+        window.location.href = "index1.html"; // 0 ile 10 arasında sayı tahmin oyununa yönlendir
+      }, 4000);
     }
 
     attemptsDisplay.textContent = attempts;
   }
 
   userGuessInput.value = "";
-}
-
-function restartGame() {
-  initializeGame();
-  userGuessInput.focus();
 }

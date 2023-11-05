@@ -8,8 +8,8 @@
   </head>
   <body>
     <div class="container">
-      <h1>Tahmin etmek istediğiniz sayıyı girin (0-10)</h1>
-      <h3>Seviye 1</h3>
+      <h1>Tahmin etmek istediğiniz sayıyı girin (0-1000)</h1>
+      <h3>Seviye 3</h3>
       <input
         type="text"
         id="userGuess"
@@ -26,7 +26,10 @@
       <p id="mp3"></p>
       <audio src="yanlis.mp3" id="yanlis"></audio>
       <audio src="dogru.mp3" id="dogru"></audio>
+      <audio id="gerilim" autoplay loop>
+        <source src="gerilim.mp3" />
+      </audio>
     </div>
-    <script src="index.js"></script>
+    <script src="index2.js"></script>
   </body>
 </html>
