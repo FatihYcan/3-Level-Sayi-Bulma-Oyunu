@@ -127,7 +127,7 @@ function playGame() {
       message.style.color = "orange";
 
       setTimeout(() => {
-        window.location.href = "index2.html"; // 0 ile 10 arasında sayı tahmin oyununa yönlendir
+        window.location.href = "index2.html"; // 0 ile 100 arasında sayı tahmin oyununa yönlendir
       }, 4000);
     }
 
