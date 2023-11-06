@@ -14,6 +14,7 @@ const input = document.querySelector(".input");
 const last = document.getElementById("last");
 const yanlis = document.getElementById("yanlis");
 const dogru = document.getElementById("dogru");
+const seviye = document.getElementById("seviye");
 
 // const remainingAttemptsDisplay = document.getElementById("remainingAttempts");
 
@@ -101,7 +102,7 @@ function playGame() {
 
     if (userGuess !== secretNumber && attempts <= 0) {
       message.textContent = `Üzgünüm ki 😢😢😢 ${secretNumber} sayısını ${maxAttempts} hakkınızda bilemediniz.  Oyunu yeniden başlatmak için 'Oyunu Yeniden Başlat' butonuna tıklayabilirsiniz.`;
-      const audio = new Audio("yanlis.mp3");
+      const audio = new Audio("seviye.mp3");
       audio.play();
       guessButton.disabled = true;
       userGuessInput.disabled = true;
