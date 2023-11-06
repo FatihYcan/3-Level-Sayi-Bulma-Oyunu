@@ -38,9 +38,16 @@ button {
   font-weight: bold;
 }
 
-.firstt, .lastt {
+.firstt,
+.lastt {
   font-size: 25px;
   font-weight: bold;
 }
 
+a {
+  text-decoration: none;
+}
 
+#winAnimation {
+  width: 100px;
+} 
