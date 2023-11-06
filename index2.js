@@ -128,7 +128,7 @@ function playGame() {
 
       setTimeout(() => {
         window.location.href = "index2.html"; // 0 ile 1000 arasında sayı tahmin oyununa yönlendir
-      }, 3000);
+      }, 2000);
     }
 
     attemptsDisplay.textContent = attempts;
