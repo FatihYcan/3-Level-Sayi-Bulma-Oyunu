@@ -83,12 +83,12 @@ function playGame() {
       firstGuess = userGuess;
     }
 
-    if (userGuess < secretNumber && attempts >= 1) {
+    if (userGuess < secretNumber && maxAttempts - attempts > 0) {
       message.textContent = "Daha büyük bir sayı deneyin.";
       const audio = new Audio("yanlis.mp3");
       audio.play();
       message.style.color = "orange";
-    } else if (userGuess > secretNumber && attempts >= 1) {
+    } else if (userGuess > secretNumber && maxAttempts - attempts > 0) {
       message.textContent = "Daha küçük bir sayı deneyin.";
       const audio = new Audio("yanlis.mp3");
       audio.play();
