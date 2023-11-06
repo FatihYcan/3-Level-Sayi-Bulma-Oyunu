@@ -16,11 +16,11 @@ const input = document.querySelector(".input");
 const last = document.getElementById("last");
 const yanlis = document.getElementById("yanlis");
 const dogru = document.getElementById("dogru");
-
-// const remainingAttemptsDisplay = document.getElementById("remainingAttempts");
-
+const seviye = document.getElementById("seviye");
+const sabit = document.getElementById("sabit");
 const lastGuessDisplay = document.getElementById("lastGuess");
 const restartButton = document.getElementById("restartButton");
+// const remainingAttemptsDisplay = document.getElementById("remainingAttempts");
 
 window.addEventListener("load", () => {
   input.focus();
@@ -92,7 +92,7 @@ function playGame() {
       message.textContent = "Daha küçük bir sayı deneyin.";
       const audio = new Audio("yanlis.mp3");
       audio.play();
-      message.style.color = "yellow";
+      message.style.color = "crimson";
     } else {
       if (userGuess === secretNumber && maxAttempts - (attempts - 1) >= 0) {
         message.textContent = `Tebrikler 👏👏👏 ${secretNumber} sayısını ${attempts} denemede buldunuz. 3. seviyeye yükseldiniz.`;
@@ -116,7 +116,7 @@ function playGame() {
       message.style.color = "red";
       setTimeout(() => {
         window.location.href = "index.html"; // 0 ile 10 arasında sayı tahmin oyununa yönlendir
-      }, 3000);
+      }, 4000);
     }
 
     if (
@@ -124,15 +124,15 @@ function playGame() {
       lastGuess > secretNumber &&
       maxAttempts - attempts == 0
     ) {
-      message.textContent = `${secretNumber} sayısı hakkınız olan ${maxAttempts} tahmin arasında bulunduğunuz ${firstGuess} ile ${lastGuess} sayısı arasında olduğu için bu seviyeyi tekrar oynacaksınız. `;
-      const audio = new Audio("yanlis.mp3");
+      message.textContent = `😔😔😔 ${secretNumber} sayısı tahminlerde bulunduğunuz ${firstGuess} ile ${lastGuess} sayısı arasında olduğu için bu seviyeyi tekrar oynacaksınız. `;
+      const audio = new Audio("seviye.mp3");
       audio.play();
       first.style.display = "none";
       last.style.display = "none";
       message.style.color = "orange";
       setTimeout(() => {
         window.location.href = "index1.html"; //
-      }, 2000);
+      }, 3000);
     }
 
     attemptsDisplay.textContent = attempts;
