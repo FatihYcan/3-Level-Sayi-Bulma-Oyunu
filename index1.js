@@ -83,12 +83,12 @@ function playGame() {
       firstGuess = userGuess;
     }
 
-    if (userGuess < secretNumber) {
+    if (userGuess < secretNumber && attempts >= 1) {
       message.textContent = "Daha büyük bir sayı deneyin.";
       const audio = new Audio("yanlis.mp3");
       audio.play();
       message.style.color = "orange";
-    } else if (userGuess > secretNumber) {
+    } else if (userGuess > secretNumber && attempts >= 1) {
       message.textContent = "Daha küçük bir sayı deneyin.";
       const audio = new Audio("yanlis.mp3");
       audio.play();
@@ -131,7 +131,7 @@ function playGame() {
       last.style.display = "none";
       message.style.color = "orange";
       setTimeout(() => {
-        window.location.href = "index1.html"; // 0 ile 10 arasında sayı tahmin oyununa yönlendir
+        window.location.href = "index1.html"; //
       }, 2000);
     }
 
