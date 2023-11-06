@@ -82,7 +82,7 @@ function playGame() {
       message.textContent = "Daha küçük bir sayı deneyin.";
       const audio = new Audio("yanlis.mp3");
       audio.play();
-      message.style.color = "yellow";
+      message.style.color = "crimson";
     } else {
       if (userGuess === secretNumber && attempts >= 0) {
         message.textContent = `Tebrikler 👏👏👏 ${secretNumber} sayısını ${
@@ -119,4 +119,5 @@ function playGame() {
 
 function restartGame() {
   initializeGame();
-  userGuessInput.focus();}
+  userGuessInput.focus();
+}
