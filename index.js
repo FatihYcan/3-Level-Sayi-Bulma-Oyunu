@@ -119,5 +119,4 @@ function playGame() {
 
 function restartGame() {
   initializeGame();
-  userGuessInput.focus();
-}
+  userGuessInput.focus();}
