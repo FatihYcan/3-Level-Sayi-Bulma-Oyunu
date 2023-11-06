@@ -149,3 +149,4 @@ function playGame() {
 
   userGuessInput.value = "";
 }
+
