@@ -14,7 +14,6 @@ const input = document.querySelector(".input");
 const last = document.getElementById("last");
 const yanlis = document.getElementById("yanlis");
 const dogru = document.getElementById("dogru");
-const seviye = document.getElementById("seviye");
 
 // const remainingAttemptsDisplay = document.getElementById("remainingAttempts");
 
@@ -74,12 +73,12 @@ function playGame() {
     last.textContent = `Son tahmin: ${userGuess}  `;
     input.focus();
 
-    if (userGuess < secretNumber) {
+    if (userGuess < secretNumber && attempts > 0) {
       message.textContent = "Daha büyük bir sayı deneyin.";
       const audio = new Audio("yanlis.mp3");
       audio.play();
       message.style.color = "orange";
-    } else if (userGuess > secretNumber) {
+    } else if (userGuess > secretNumber && attempts > 0) {
       message.textContent = "Daha küçük bir sayı deneyin.";
       const audio = new Audio("yanlis.mp3");
       audio.play();
