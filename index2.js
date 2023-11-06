@@ -104,7 +104,7 @@ function playGame() {
 
     if (userGuess !== secretNumber && maxAttempts - attempts <= 0) {
       message.textContent = `Üzgünüm ki 😢😢😢 ${secretNumber} sayısını ${maxAttempts} hakkınızda bilemediniz. Seviye 2'e düştünüz`;
-      const audio = new Audio("yanlis.mp3");
+      const audio = new Audio("seviye.mp3");
       audio.play();
       first.style.display = "none";
       last.style.display = "none";
