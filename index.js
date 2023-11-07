@@ -92,6 +92,8 @@ function playGame() {
         audio.play();
         first.style.display = "none";
         last.style.display = "none";
+          guessButton.disabled = true;
+        userGuessInput.disabled = true;
         message.style.color = "green";
         setTimeout(() => {
           window.location.href = "index1.html"; // 0 ile 100 arasında sayı tahmin oyununa yönlendir
