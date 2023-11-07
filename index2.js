@@ -106,6 +106,8 @@ function playGame() {
         });
         first.style.display = "none";
         last.style.display = "none";
+        guessButton.disabled = true;
+        userGuessInput.disabled = true;
         message.style.color = "green";
         restartButton.style.display = "block";
         gerilim.pause();
@@ -121,6 +123,8 @@ function playGame() {
       gerilim.pause();
       first.style.display = "none";
       last.style.display = "none";
+      guessButton.disabled = true;
+      userGuessInput.disabled = true;
       message.style.color = "red";
       setTimeout(() => {
         window.location.href = "index1.html"; // 0 ile 10 arasında sayı tahmin oyununa yönlendir
@@ -137,6 +141,8 @@ function playGame() {
       audio.play();
       first.style.display = "none";
       last.style.display = "none";
+      guessButton.disabled = true;
+      userGuessInput.disabled = true;
       message.style.color = "orange";
       setTimeout(() => {
         window.location.href = "index2.html"; //
