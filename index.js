@@ -92,7 +92,7 @@ function playGame() {
         audio.play();
         first.style.display = "none";
         last.style.display = "none";
-          guessButton.disabled = true;
+        guessButton.disabled = true;
         userGuessInput.disabled = true;
         message.style.color = "green";
         setTimeout(() => {
