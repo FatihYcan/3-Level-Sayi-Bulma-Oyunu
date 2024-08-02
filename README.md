@@ -24,6 +24,6 @@ Bu proje, kullanıcıların belirli bir aralıkta gizli bir sayıyı tahmin etme
 - Her seviyede kalan tahmin hakkı ve son tahmin gösterimi
 - Başarıyla bitirdiğinizde animasyon ve ses efektleri
 
-https://github.com/user-attachments/assets/fb881ed0-bb04-4c50-801b-fc536518d100
+https://github.com/user-attachments/assets/21dabcdf-0804-4f56-a626-9946ebfc9ae5
 
 [Canlı Demo'yu Deneyin](https://3-level-sayi-bulma-oyunu.netlify.app/)
