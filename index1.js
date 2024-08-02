@@ -14,13 +14,8 @@ const attemptsDisplay = document.getElementById("attempts");
 const first = document.getElementById("first");
 const input = document.querySelector(".input");
 const last = document.getElementById("last");
-const yanlis = document.getElementById("yanlis");
-const dogru = document.getElementById("dogru");
-const seviye = document.getElementById("seviye");
-const sabit = document.getElementById("sabit");
 const lastGuessDisplay = document.getElementById("lastGuess");
 const restartButton = document.getElementById("restartButton");
-// const remainingAttemptsDisplay = document.getElementById("remainingAttempts");
 
 window.addEventListener("load", () => {
   input.focus();
@@ -58,91 +53,75 @@ function generateRandomNumber() {
 }
 
 function playGame() {
-  window.addEventListener("load", () => {
-    input.focus();
-  });
-
   const userGuess = parseInt(userGuessInput.value);
 
   if (isNaN(userGuess) || userGuess < minNumber || userGuess > maxNumber) {
     alert(
       `Lütfen geçerli bir sayı girin (${minNumber} ile ${maxNumber} arasında).`
     );
-  } else {
-    first.style.display = "block";
-    last.style.display = "block";
-    attemptsDisplay.textContent = attempts;
-    attempts++;
-    first.textContent = `Kalan tahmin sayısı: ${maxAttempts - attempts}  `;
+    return;
+  }
 
-    lastGuess = userGuess;
-    last.textContent = `Son tahmin: ${userGuess}  `;
-    input.focus();
+  attempts++;
+  attemptsDisplay.textContent = attempts;
+  first.style.display = "block";
+  last.style.display = "block";
+  first.textContent = `Kalan tahmin sayısı: ${maxAttempts - attempts}  `;
+  lastGuess = userGuess;
+  last.textContent = `Son tahmin: ${userGuess}  `;
+  input.focus();
 
-    if (attempts === 1) {
-      firstGuess = userGuess;
-    }
+  if (attempts === 1) {
+    firstGuess = userGuess;
+  }
 
-    if (userGuess < secretNumber && maxAttempts - attempts > 0) {
-      message.textContent = "Daha büyük bir sayı deneyin.";
-      const audio = new Audio("yanlis.mp3");
-      audio.play();
-      message.style.color = "orange";
-    } else if (userGuess > secretNumber && maxAttempts - attempts > 0) {
-      message.textContent = "Daha küçük bir sayı deneyin.";
-      const audio = new Audio("yanlis.mp3");
-      audio.play();
-      message.style.color = "crimson";
+  if (userGuess < secretNumber && maxAttempts - attempts > 0) {
+    message.textContent = "Daha büyük bir sayı deneyin.";
+    playAudio("./mp3/yanlis.mp3", "orange");
+  } else if (userGuess > secretNumber && maxAttempts - attempts > 0) {
+    message.textContent = "Daha küçük bir sayı deneyin.";
+    playAudio("./mp3/yanlis.mp3", "crimson");
+  } else if (userGuess === secretNumber) {
+    message.textContent = `Tebrikler 👏👏👏 ${secretNumber} sayısını ${attempts} denemede buldunuz. 3. seviyeye yükseldiniz.`;
+    playAudio("./mp3/dogru.mp3", "green");
+    endGame();
+    setTimeout(() => {
+      window.location.href = "index2.html"; // 0 ile 1000 arasında sayı tahmin oyununa yönlendir
+    }, 3000);
+  } else if (attempts >= maxAttempts) {
+    if (firstGuess < secretNumber && lastGuess > secretNumber) {
+      message.textContent = `😔😔😔 ${secretNumber} sayısı tahminlerde bulunduğunuz ${firstGuess} ile ${lastGuess} sayısı arasında olduğu için bu seviyeyi tekrar oynacaksınız.`;
+      playAudio("./mp3/sabit.mp3", "orange");
+      setTimeout(() => {
+        window.location.href = "index1.html"; // 0 ile 100 arasında sayı tahmin oyununa yönlendir
+      }, 3000);
     } else {
-      if (userGuess === secretNumber && maxAttempts - (attempts - 1) >= 0) {
-        message.textContent = `Tebrikler 👏👏👏 ${secretNumber} sayısını ${attempts} denemede buldunuz. 3. seviyeye yükseldiniz.`;
-        const audio = new Audio("dogru.mp3");
-        audio.play();
-        first.style.display = "none";
-        last.style.display = "none";
-        guessButton.disabled = true;
-        userGuessInput.disabled = true;
-        message.style.color = "green";
-        setTimeout(() => {
-          window.location.href = "index2.html"; // 0 ile 1000 arasında sayı tahmin oyununa yönlendir
-        }, 3000);
-      }
-    }
-
-    if (userGuess !== secretNumber && maxAttempts - attempts <= 0) {
-      message.textContent = `Üzgünüm ki 😢😢😢 ${secretNumber} sayısını ${maxAttempts} hakkınızda bilemediniz. Seviye 1'e düştünüz`;
-      const audio = new Audio("seviye.mp3");
-      audio.play();
-      first.style.display = "none";
-      last.style.display = "none";
-              guessButton.disabled = true;
-        userGuessInput.disabled = true;
-      message.style.color = "red";
+      message.textContent = `Üzgünüm ki 😢😢😢 ${secretNumber} sayısını ${maxAttempts} hakkınızda bilemediniz. Seviye 1'e düştünüz.`;
+      playAudio("./mp3/seviye.mp3", "red");
       setTimeout(() => {
         window.location.href = "index.html"; // 0 ile 10 arasında sayı tahmin oyununa yönlendir
       }, 4000);
     }
-
-    if (
-      firstGuess < secretNumber &&
-      lastGuess > secretNumber &&
-      maxAttempts - attempts == 0
-    ) {
-      message.textContent = `😔😔😔 ${secretNumber} sayısı tahminlerde bulunduğunuz ${firstGuess} ile ${lastGuess} sayısı arasında olduğu için bu seviyeyi tekrar oynacaksınız. `;
-      const audio = new Audio("seviye.mp3");
-      audio.play();
-      first.style.display = "none";
-      last.style.display = "none";
-              guessButton.disabled = true;
-        userGuessInput.disabled = true;
-      message.style.color = "orange";
-      setTimeout(() => {
-        window.location.href = "index1.html"; //
-      }, 3000);
-    }
-
-    attemptsDisplay.textContent = attempts;
+    endGame();
   }
 
   userGuessInput.value = "";
+}
+
+function playAudio(src, color) {
+  const audio = new Audio(src);
+  audio.play();
+  message.style.color = color;
+}
+
+function endGame() {
+  first.style.display = "none";
+  last.style.display = "none";
+  guessButton.disabled = true;
+  userGuessInput.disabled = true;
+}
+
+function restartGame() {
+  initializeGame();
+  userGuessInput.focus();
 }
