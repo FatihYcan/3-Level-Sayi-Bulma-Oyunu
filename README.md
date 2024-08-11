@@ -11,6 +11,14 @@ This project includes a number guessing game where users try to guess a hidden n
 - Remaining guess and last guess display at each level
 - Animation and sound effects when you finish successfully
 
+## Technologies Used
+
+- HTML5
+- CSS3
+- JavaScript
+- Audio
+- GIF
+
 # Sayı Tahmin Oyunu
 
 Bu proje, kullanıcıların belirli bir aralıkta gizli bir sayıyı tahmin etmeye çalıştığı bir sayı tahmin oyununu içermektedir. Oyun, kullanıcıya çeşitli seviyelerde zorluk sunar ve her seviyede tahmin aralığı artar.
@@ -23,6 +31,14 @@ Bu proje, kullanıcıların belirli bir aralıkta gizli bir sayıyı tahmin etme
 - Kullanıcı tahminlerinde geri bildirim
 - Her seviyede kalan tahmin hakkı ve son tahmin gösterimi
 - Başarıyla bitirdiğinizde animasyon ve ses efektleri
+
+## Kullanılan Teknolojiler
+
+- HTML5
+- CSS3
+- JavaScript
+- Audio
+- GIF
 
 https://github.com/user-attachments/assets/21dabcdf-0804-4f56-a626-9946ebfc9ae5
 
